@@ -1,0 +1,15 @@
+- name: stop a server
+  hosts: all
+  tasks:
+    - name: stop
+      ansible.builtin.shell:
+        cmd: sudo systemctl stop httpd
+        
+    - name: check
+      ansible.builtin.shell:
+        cmd: sudo systemctl status httpd
+      register: result
+
+    - name: debug
+      ansible.builtin.debug:
+        var: result
