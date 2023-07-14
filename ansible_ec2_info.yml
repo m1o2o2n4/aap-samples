@@ -1,0 +1,23 @@
+- name: Check if the VM is already provisioned
+  hosts: localhost
+  gather_facts: no
+
+  vars:
+    aws_region: "us-east-1"
+
+  tasks:
+   - name: test
+     amazon.aws.ec2_instance_info:
+       region: "{{ aws_region }}"
+       filters:
+         instance-state-name:
+           - pending
+           - running
+           - shutting-down
+           - stopping
+           - stopped
+     register: result
+
+   - name: debug
+     ansible.builtin.debug:
+       var: result
