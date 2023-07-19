@@ -1,0 +1,14 @@
+---
+- name: Listen for webhook 5000
+  hosts: all
+  sources:
+  - ansible.eda.webhook:
+      host: 0.0.0.0
+      port: 5000
+  rules:
+  - name: Message ID1 received, action ID1 executed
+    condition: event.payload.message == "1"
+    action:
+      run_job_template:
+        name: Show EC2 Info
+        organization: Default
