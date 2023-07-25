@@ -10,5 +10,9 @@
     condition: event.payload.message == "1"
     action:
       run_job_template:
-        name: Show EC2 Info
+        name: AAP Notification to Teams
         organization: Default
+        job_args:
+          extra_vars:
+            code: "{{ event.payload.message }}"
+            message: "{{ event.payload.message }}"
