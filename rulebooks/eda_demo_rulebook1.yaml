@@ -14,5 +14,5 @@
         organization: Default
         job_args:
           extra_vars:
-            code: "{{ event.payload.code }}"
-            message: "{{ event.payload.message }}"
+            code: "{{ event.payload.code | string }}"
+            message: "{{ event.payload.message | string }}"
