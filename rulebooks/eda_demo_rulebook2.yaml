@@ -1,0 +1,50 @@
+- name: Teams Complete Notification
+  hosts: demo_server
+  tasks:
+    - name: Teams Notification
+      ansible.builtin.uri:
+        url: "https://vy77g.webhook.office.com/webhookb2/14e5b8e7-c1db-4826-8aa4-e10488b4da57@dc50272f-ca89-46a9-b808-00ef6157b1f4/IncomingWebhook/2873c0a825e74ecd893e10ab4c4a5f50/d1beb72f-f913-40de-8dc5-fc20f65e66a5"
+        method: POST
+        body_format: json
+        body: |-
+          {
+            "@type": "MessageCard",
+            "@context": "http://schema.org/extensions",
+            "themeColor": "0076D7",
+            "summary": "Teams Notification",
+            "sections": [
+              {
+                "activityTitle": "障害対応完了通知",
+                "activitySubtitle": "TEST",
+                "activityImage": "https://teamsnodesample.azurewebsites.net/static/img/image5.png",
+                "facts": [
+                  {"name": "システム","value": "system"},
+                  {"name": "障害ID","value": "id"},
+                  {"name": "障害発生日時","value": "2023/07/30"},
+                  {"name": "エラー情報","value": "エラー対象:XXX, エラーコード:XXX</br>説明:XXX"},
+                  {"name": "障害票","value": "[Redmine]"}
+                ],
+                "markdown": true
+              }
+            ],
+            "potentialAction": [
+              {
+                "@type": "HttpPOST",
+                "name": "完了依頼",
+                "target": "http://54.159.113.126:5000",
+                "headers": [
+                  {
+                    "name": "content-type",
+                    "value": "application/json"
+                  }
+                ],
+                "bodyContentType": "application/json",
+                "body": "{\"message\": \"1\", \"code\": \"101\"}"
+              }
+            ]
+          }
+      register: result_put
+
+    - name: debug
+      ansible.builtin.debug:
+        var: result_put
