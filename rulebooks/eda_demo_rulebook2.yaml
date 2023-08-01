@@ -31,7 +31,7 @@
               {
                 "@type": "HttpPOST",
                 "name": "完了依頼",
-                "target": "http://54.159.113.126:5000",
+                "target": "http://demo-eda.sandbox977.opentlc.com:5000",
                 "headers": [
                   {
                     "name": "content-type",
