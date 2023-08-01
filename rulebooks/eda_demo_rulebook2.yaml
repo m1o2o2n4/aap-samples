@@ -31,7 +31,7 @@
               {
                 "@type": "HttpPOST",
                 "name": "完了依頼",
-                "target": "http://demo-eda.sandbox977.opentlc.com:5000",
+                "target": "https://ob4f4m39ul.execute-api.ap-northeast-1.amazonaws.com/cetras-app-api-v1/media/digest",
                 "headers": [
                   {
                     "name": "content-type",
