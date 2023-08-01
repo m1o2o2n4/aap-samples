@@ -1,5 +1,5 @@
 - name: Teams Complete Notification
-  hosts: demo_server
+  hosts: all
   tasks:
     - name: Teams Notification
       ansible.builtin.uri:
